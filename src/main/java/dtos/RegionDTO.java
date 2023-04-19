@@ -1,21 +1,27 @@
 package dtos;
 
+import entities.Region;
+
 public class RegionDTO {
 
-    String name;
+    String region;
 
     public RegionDTO() {
     }
 
-    public RegionDTO(String name) {
-        this.name = name;
+    public RegionDTO(String region) {
+        this.region = region;
     }
 
-    public String getName() {
-        return name;
+//    public RegionDTO(Region r) {
+//        this.region = r.getRegion();
+//    }
+
+    public String getRegion() {
+        return region;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRegion(String region) {
+        this.region = region;
     }
 }

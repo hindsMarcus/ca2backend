@@ -38,6 +38,7 @@ public class UserFacade {
         return emf.createEntityManager();
     }
 
+
     public User getVerifiedUser(String username, String password) throws AuthenticationException {
         EntityManager em = emf.createEntityManager();
         User user;
@@ -79,16 +80,13 @@ public class UserFacade {
         }
         return new UserDTO(u);
     }
+
+    //this method gets all users
     public List<UserDTO> getAll(){
         EntityManager em = emf.createEntityManager();
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
         List<User> persons = query.getResultList();
         return UserDTO.getDtos(persons);
     }
-
-
-
-
-
 
 }

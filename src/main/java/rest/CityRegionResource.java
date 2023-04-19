@@ -5,17 +5,13 @@ import com.google.gson.GsonBuilder;
 import dtos.RegionDTO;
 import entities.City;
 import entities.Region;
-import entities.User;
 import facades.FetchFacade;
 import utils.EMF_Creator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -26,8 +22,6 @@ public class CityRegionResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final FetchFacade FACADE =  FetchFacade.getFetchFacade(EMF);
-
-
 
 
     @GET
@@ -65,9 +59,19 @@ public class CityRegionResource {
     @GET
     @Path("name/{name}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getJoke(@PathParam("name") String name) throws Exception {
-        RegionDTO regionDTO = FACADE.createRegionDTO(FACADE.fetchData("https://restcountries.com/v3.1/all?fields=name"+name));
+    public Response getRegion(@PathParam("name") String name) throws Exception {
+        RegionDTO regionDTO = FACADE.createRegionDTO(FACADE.fetchData("https://restcountries.com/v3.1/capital/"+name+"?fields=region").replace("[","").replace("]",""));
+        FACADE.addRegion(regionDTO);
         return Response.ok().entity(regionDTO).build();
+    }
 
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("add")
+    public Response createRegion(String input){
+        RegionDTO rdto = GSON.fromJson(input, RegionDTO.class);
+        RegionDTO rdtoNew = FACADE.addRegion(rdto);
+        return Response.ok().entity(rdtoNew).build();
     }
 }

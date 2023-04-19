@@ -10,6 +10,24 @@ public class Region {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    public Region() {
+    }
+
+    public Region(String region) {
+        this.region = region;
+    }
+
+    @Column(name = "regionName")
+    private String region;
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
     public Long getId() {
         return id;
     }

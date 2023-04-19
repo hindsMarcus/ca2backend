@@ -6,6 +6,7 @@ import dtos.ChuckDTO;
 import dtos.CityDTO;
 import dtos.DadDTO;
 import dtos.RegionDTO;
+import entities.Region;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,6 +62,7 @@ public class FetchFacade {
                     response.append(inputLine);
                 }
                 in.close();
+                System.out.println(response.toString());
                 return response.toString();
 
             }
@@ -73,7 +75,23 @@ public class FetchFacade {
         return null;
     }
 
+    public RegionDTO addRegion(RegionDTO regionDTO) {
+        EntityManager em = emf.createEntityManager();
+        Region r = new Region(regionDTO.getRegion());
+        try {
+            em.getTransaction().begin();
+            em.persist(r);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new RegionDTO(r.getRegion());
+    }
 
+    public RegionDTO getRegion(String region) throws IOException {
+        String json = fetchData("https://restcountries.eu/rest/v2/region/" + region);
+        return createRegionDTO(json);
+    }
 
     //This method creates a CityDTO object from a JSON string
     public CityDTO createCityDTO(String json) {
