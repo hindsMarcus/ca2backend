@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 
+//City entity class
 @Entity
 @Table(name = "city")
 public class City {

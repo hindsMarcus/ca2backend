@@ -15,4 +15,4 @@ x-access-token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJl
 GET http://localhost:8080/groupstartcodebackend/api/joke
 
 ###
-GET http://localhost:8080/3semstartcode/api/city/name/Berlin
+GET http://localhost:8080/3semstartcode/api/city/name/Buenos%20Aires
