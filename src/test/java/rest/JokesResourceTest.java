@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class JokesResourceTest {
 
-    private static final int SERVER_PORT = 7777;
+    private static final int SERVER_PORT = 7778;
     private static final String SERVER_URL = "http://localhost/api";
     private static MyJokeDTO myJokeDTO;
 

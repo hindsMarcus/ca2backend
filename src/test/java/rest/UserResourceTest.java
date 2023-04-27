@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class UserResourceTest {
 
 
-    private static final int SERVER_PORT = 7777;
+    private static final int SERVER_PORT = 7778;
     private static final String SERVER_URL = "http://localhost/api";
     private static User u1, u2;
     List<Role> userList = new ArrayList<>();
