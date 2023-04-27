@@ -51,13 +51,14 @@ public class FetchFacade {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json"); // Add this line
+        StringBuilder response = new StringBuilder();
+
         try {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(
                         connection.getInputStream()));
                 String inputLine;
-                StringBuilder response = new StringBuilder();
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
@@ -72,7 +73,7 @@ public class FetchFacade {
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
         }
-        return null;
+        return response.toString();
     }
 
     public RegionDTO addRegion(RegionDTO regionDTO) {

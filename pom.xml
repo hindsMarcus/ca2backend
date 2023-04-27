@@ -131,7 +131,9 @@
                 <configuration>          
                     <server>TomcatServer</server>
                     <url>${remote.server}</url>
+                    <!--suppress UnresolvedMavenProperty -->
                     <username>${remote.user}</username>
+                    <!--suppress UnresolvedMavenProperty -->
                     <password>${remote.password}</password>
                     <update>true</update>    
                 </configuration>  
@@ -161,8 +163,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>11</source>
+                    <target>11</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
